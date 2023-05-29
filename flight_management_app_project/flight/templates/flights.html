@@ -1,0 +1,34 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="">
+  <div class="mb-3">
+   <label class="form-label">Search for Flight:</label>
+   <input type="text" name="searchFlight" 
+     class="form-control" />
+  </div>
+  <button type="submit" class="btn btn-primary">
+    Search
+  </button>
+</form>
+<p>Searching for: {{ searchTerm }}</p>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for flight in flights %}
+  <div v-for="flight in flights" class="col">
+    <div class="card">
+      <div class="card-body">
+        <a href="{% url 'detail' flight.id_vuelo %}">
+          <h5 class="card-title fw-bold">{{ flight.id_vuelo }}</h5>
+        </a>
+        <p class="card-text">{{ flight.fecha_salida }}</p>
+        <p class="card-text">{{ flight.fecha_llegada }}</p>
+        <p class="card-text">{{ flight.categoria_vuelo }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}

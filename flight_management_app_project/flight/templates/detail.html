@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card mb-3">
+
+  <div class="row g-0">
+
+    <div class="col-md-8">
+
+      <div class="card-body">
+
+        <h5 class="card-title">{{ flight.id_vuelo }}</h5>
+
+        <p class="card-text">{{ flight.fecha_salida }}</p>
+        <p class="card-text">
+          {% if user.is_authenticated %}
+          <a href="{% url 'bookflight' flight.id_vuelo %}" class="btn btn-primary">Book Flight</a>
+          {% endif %}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock content %}
