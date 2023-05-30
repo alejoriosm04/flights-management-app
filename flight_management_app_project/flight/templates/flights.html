@@ -23,8 +23,10 @@
         <a href="{% url 'detail' flight.id_vuelo %}">
           <h5 class="card-title fw-bold">{{ flight.id_vuelo }}</h5>
         </a>
-        <p class="card-text">{{ flight.fecha_salida }}</p>
-        <p class="card-text">{{ flight.fecha_llegada }}</p>
+        <h5>Flight operated by: {{ flight.codigo_IATA_aerolinea_vuelo.nombre_aerolinea }}</h5>
+        <br>
+        <p class="card-text">Departure: {{ flight.fecha_salida }} - {{ flight.id_pais_aeropuerto_salida.nombre_pais }}, {{ flight.id_ciudad_aeropuerto_salida.nombre_ciudad }} ({{ flight.codigo_IATA_aeropuerto_salida.nombre_aeropuerto }})</p>
+        <p class="card-text">Arrival: {{ flight.fecha_llegada }} - {{ flight.id_pais_aeropuerto_llegada.nombre_pais }}, {{ flight.id_ciudad_aeropuerto_llegada.nombre_ciudad }} ({{ flight.codigo_IATA_aeropuerto_llegada.nombre_aeropuerto }})</p>
         <p class="card-text">{{ flight.categoria_vuelo }}</p>
       </div>
     </div>

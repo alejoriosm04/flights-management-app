@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
-from .models import Flight, Ticket
+from .models import Flight, Ticket, Airline, Airport
 from .forms import TicketForm
 
 
@@ -18,8 +18,10 @@ def flights(request):
 
 
 def detail(request, id_vuelo):
-    flight = get_object_or_404(Flight, pk=id_vuelo)
-    return render(request, 'detail.html', {'flight': flight})
+    flight = get_object_or_404(Flight, pk=id_vuelo) 
+    #tickets = Ticket.objects.filter(id_vuelo_ticket=id_vuelo)
+    tickets = Ticket.objects.all()
+    return render(request, 'detail.html', {'flight': flight, 'tickets': tickets})
 
 
 def about(request):
