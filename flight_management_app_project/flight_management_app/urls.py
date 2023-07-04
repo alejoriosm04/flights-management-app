@@ -20,6 +20,7 @@ from flight import views as flightViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', flightViews.home, name='home'),
     path('flights/', flightViews.flights, name='flights'),
     path('flight/', include('flight.urls')),
     path('customer/', include('customer.urls')),

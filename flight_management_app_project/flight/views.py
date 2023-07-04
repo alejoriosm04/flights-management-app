@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from .models import Flight, Ticket, Airline, Airport
-from .forms import TicketForm
+from .forms import TicketForm, FlightForm
+
+
+def home(request):
+    return render(request, 'home.html')
 
 
 def flights(request):
@@ -40,3 +44,16 @@ def bookflight(request, id_vuelo):
             return render(request, 'detail.html', {'flight': flight})
         except ValueError:
             return render(request, 'bookflight.html', {'form': TicketForm(), 'error': 'Bad data passed in. Try again.'})
+
+
+def flightcreation(request):
+    if request.method == 'GET':
+        return render(request, 'flightcreation.html', {'form': FlightForm()})
+    else:
+        try:
+            form = FlightForm(request.POST)
+            newFlight = form.save(commit=False)
+            newFlight.save()
+            return redirect('flights')
+        except ValueError:
+            return render(request, 'flightcreation.html', {'form': FlightForm(), 'error': 'Bad data passed in. Try again.'})

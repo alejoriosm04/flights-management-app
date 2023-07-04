@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Ticket
+from .models import Ticket, Flight
 
 class TicketForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -22,3 +22,23 @@ class TicketForm(ModelForm):
             'equipaje_mano': 'Hand Luggage',
             'equipaje_bodega': 'Hold Luggage'
         }
+
+
+class FlightForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['id_vuelo'].widget.attrs.update({'class': 'form-control'})
+        self.fields['codigo_IATA_aerolinea_vuelo'].widget.attrs.update({'class': 'form-control'})
+        self.fields['codigo_IATA_aeropuerto_salida'].widget.attrs.update({'class': 'form-control'})
+        self.fields['id_ciudad_aeropuerto_salida'].widget.attrs.update({'class': 'form-control'})
+        self.fields['id_pais_aeropuerto_salida'].widget.attrs.update({'class': 'form-control'})
+        self.fields['codigo_IATA_aeropuerto_llegada'].widget.attrs.update({'class': 'form-control'})
+        self.fields['id_ciudad_aeropuerto_llegada'].widget.attrs.update({'class': 'form-control'})
+        self.fields['id_pais_aeropuerto_llegada'].widget.attrs.update({'class': 'form-control'})
+        self.fields['fecha_salida'].widget.attrs.update({'class': 'form-control'})
+        self.fields['fecha_llegada'].widget.attrs.update({'class': 'form-control'})
+        self.fields['categoria_vuelo'].widget.attrs.update({'class': 'form-control'})
+
+    class Meta:
+        model = Flight
+        fields = ['id_vuelo', 'codigo_IATA_aerolinea_vuelo', 'codigo_IATA_aeropuerto_salida', 'id_ciudad_aeropuerto_salida', 'id_pais_aeropuerto_salida', 'codigo_IATA_aeropuerto_llegada', 'id_ciudad_aeropuerto_llegada', 'id_pais_aeropuerto_llegada', 'fecha_salida', 'fecha_llegada', 'categoria_vuelo']
