@@ -1,0 +1,25 @@
+{
+
+    "builds": [{
+
+        "src": "flight_management_app/wsgi.py",
+
+        "use": "@vercel/python",
+
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
+
+    }],
+
+    "routes": [
+
+        {
+
+            "src": "/(.*)",
+
+            "dest": "flight_management_app/wsgi.py"
+
+        }
+
+    ]
+
+}
